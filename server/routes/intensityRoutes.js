@@ -1,9 +1,9 @@
 import { Router } from "express";
-import { getIntensities, getIntensitiesByYear } from "../controllers/intensityController";
+import { getIntensities, getIntensitiesByYear } from "../controllers/intensityController.js";
 
 const router = Router();
 
-router.get('/intensity', getIntensities); 
-router.get('/intensityByYear/:year', getIntensitiesByYear);
+router.get('/', getIntensities); 
+router.get('/byYear/:year', getIntensitiesByYear);
 
 export default router;

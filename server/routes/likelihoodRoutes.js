@@ -1,9 +1,9 @@
 import { Router } from "express";
-import { getLikelihoods, getLikelihoodsByYear } from "../controllers/likelihoodController";
+import { getLikelihoods, getLikelihoodsByYear } from "../controllers/likelihoodController.js";
 
 const router = Router();
 
-router.get('/likelihood', getLikelihoods);
-router.get('/likelihoodByYear/:year', getLikelihoodsByYear);
+router.get('/', getLikelihoods);
+router.get('/byYear/:year', getLikelihoodsByYear);
 
 export default router;

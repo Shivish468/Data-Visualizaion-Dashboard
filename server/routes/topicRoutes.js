@@ -1,9 +1,9 @@
 import { Router } from "express";
-import { getTopics, getTopicsByRegion } from "../controllers/topicsController";
+import { getTopics, getTopicsByRegion } from "../controllers/topicsController.js";
 
 const router = Router();
 
-router.get('/topics', getTopics);
-router.get('/topicsByRegion/:region', getTopicsByRegion);
+router.get('/', getTopics);
+router.get('/byRegion/:region', getTopicsByRegion);
 
 export default router;

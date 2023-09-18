@@ -1,9 +1,9 @@
 import { Router } from "express";
-import { getYearData, getYearDataByCountry } from "../controllers/yearController";
+import { getYearData, getYearDataByCountry } from "../controllers/yearController.js";
 
 const router = Router();
 
-router.get('/year', getYearData);
-router.get('/yearByCountry/:country', getYearDataByCountry);
+router.get('/', getYearData);
+router.get('/byCountry/:country', getYearDataByCountry);
 
 export default router;

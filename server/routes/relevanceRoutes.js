@@ -1,9 +1,9 @@
 import { Router } from "express";
-import { getRelevanceData, getRelevanceDataByYear } from "../controllers/relevanceController";
+import { getRelevanceData, getRelevanceDataByYear } from "../controllers/relevanceController.js";
 
 const router = Router();
 
-router.get('/relevance', getRelevanceData);
-router.get('/relevanceByYear/:year', getRelevanceDataByYear);
+router.get('/', getRelevanceData);
+router.get('/byYear/:year', getRelevanceDataByYear);
 
 export default router;

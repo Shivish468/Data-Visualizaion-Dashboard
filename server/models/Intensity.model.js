@@ -1,6 +1,6 @@
-import mongoose from 'mongoose';
+import { Schema, model} from 'mongoose';
 
-const intensitySchema = new mongoose.Schema({
+const intensitySchema = new Schema({
   end_year: String,
   intensity: Number,
   sector: String,
@@ -18,8 +18,10 @@ const intensitySchema = new mongoose.Schema({
   source: String,
   title: String,
   likelihood: Number
+},{
+  timestamps: true
 });
 
-const Intensity = mongoose.model('Intensity', intensitySchema);
+const Intensity = model('Intensity', intensitySchema);
 
 export default Intensity;
