@@ -6,7 +6,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.use('/dvd/', dashboardRoutes);
+app.use('/api/data', dashboardRoutes);
 
 app.all('*', (req, res) => {
     res.status(404).send('OOPS!! 404 page not found');
