@@ -5,7 +5,7 @@ mongoose.set('strictQuery', false);
 const connectionToDB = async () => {
     try {
         const { connection } = await mongoose.connect(
-            process.env.MONGO_URI || `mongodb://127.0.0.1:27017/Blackcoffer`,{
+            process.env.MONGO_URL,{
                 useNewUrlParser: true,
                 useUnifiedTopology: true
             }
