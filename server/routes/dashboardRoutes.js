@@ -1,11 +1,14 @@
 import express from 'express';
-import { filteredByCountry, filteredByIntensity, filteredByLikelihood, filteredByPest, filteredByRegion, filteredBySector, filteredBySource, filteredByTitle, filteredByTopic, filteredByYear, getAllData } from '../controllers/dashboardControllers.js';
+import { filteredByAny, filteredByCountry, filteredByIntensity, filteredByLikelihood, filteredByPest, filteredByRegion, filteredBySector, filteredBySource, filteredByTitle, filteredByTopic, filteredByYear, getAllData } from '../controllers/dashboardControllers.js';
 
 //creating a router
 const router = express.Router();
 
 //api to get all the data
 router.get('/all', getAllData);
+
+// api to get data filtered by any
+router.get("/any/:search", filteredByAny)
 
 // api to get data filtered by year
 router.get("/year/:year", filteredByYear)

@@ -338,3 +338,42 @@ export const filteredByLikelihood = async (req, res) => {
         })
     }
 }
+
+// function to get data filtered by any
+export const filteredByAny = async (req, res) => {
+    try {
+        const { search } = req.params;
+        if (search.length < 3) {
+            return res.status(400).json({
+                success: false,
+                message: "Invalid search",
+            })
+        }
+        // ----------- important -----------
+        // using '$or' operator to which includes multiple conditions
+        // using '$regex' to match the particular field with given input
+        // using $options: 'i' to make the search case-insensitive
+        const allData = await reportModel.find({
+            $or: [{ sector: { $regex: search, $options: 'i' } }, { topic: { $regex: search, $options: 'i' } },
+            { insight: { $regex: search, $options: 'i' } }, { title: { $regex: search, $options: 'i' } },
+            { pestle: { $regex: search, $options: 'i' } }, { source: { $regex: search, $options: 'i' } },
+            { url: { $regex: search, $options: 'i' } }]
+        });
+        if (!allData || allData.length === 0) {
+            return res.status(400).json({
+                success: false,
+                message: "No Data Found",
+            })
+        }
+        return res.status(200).json({
+            success: true,
+            message: `Filtered by search ${search}`,
+            data: allData
+        })
+    } catch (e) {
+        return res.status(500).json({
+            success: false,
+            message: "Internal Server Error",
+        })
+    }
+}

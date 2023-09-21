@@ -20,7 +20,7 @@ const Tabsrow = ({ data, setMainData }) => {
     const handleSearchResult = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.get(`https://dashboard-6bfs.onrender.com/api/data/any/${search}`);
+            const response = await axios.get(`http://dashboard-6bfs.onrender.com/api/data/any/${search}`);
             setMainData(response.data.data);
             setSearch("");
         }
@@ -38,7 +38,7 @@ const Tabsrow = ({ data, setMainData }) => {
             >
                 <Tab eventKey="data" title="Data">
                     <form className="form-inline" onSubmit={handleSearchResult} style={{ display: 'flex', justifyContent: 'space-evenly' }}>
-                        <input className="form-control mr-sm-2" type="search" placeholder="Search by Sector Name, Topic, Title, Pestle, Source, Insight, URL..." aria-label="Search" onChange={(e) => setSearch(e.target.value)} style={{ marginRight: '1rem' }} />
+                        <input className="form-control mr-sm-2" type="search" placeholder="Search by Filter Sector, Topic, Title, Pestle, Source, Insight, URL..." aria-label="Search" onChange={(e) => setSearch(e.target.value)} style={{ marginRight: '1rem' }} />
                         <button className="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
                     </form>
                     <Filters setMainData={setMainData} />

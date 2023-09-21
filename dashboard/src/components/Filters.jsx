@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import { Dropdown } from 'react-bootstrap';
 import axios from 'axios';
@@ -14,8 +14,12 @@ const Filters = ({ setMainData }) => {
     // func to fetch the filtered data by year and update the state
     const getDataFromDB = async(filter) => {
         try{
-            const response = await axios.get(`https://dashboard-6bfs.onrender.com/api/data/${filter}`);
+            const response = await axios.get(`http://dashboard-6bfs.onrender.com/api/data/${filter}`);
             setMainData(response.data.data)
+
+            //Updateing the URL with the selected filter
+            const newUrl = `${window.location.pathname}?filter=${filter}`;
+            window.history.pushState(null, '', newUrl)
         }
         catch(e){
             console.log(e)
@@ -24,9 +28,9 @@ const Filters = ({ setMainData }) => {
     // func to handle the "reset filters button" by making another api call and update state 
     const handleReset = async() => {
         try{
-            const response = await axios.get("https://dashboard-6bfs.onrender.com/api/data/all");
-            setMainData(response.data.data)
             setSelectedFilter('Filter By')
+            const response = await axios.get("http://dashboard-6bfs.onrender.com/api/data/all");
+            setMainData(response.data.data)
         }
         catch(e){
             console.log(e)
