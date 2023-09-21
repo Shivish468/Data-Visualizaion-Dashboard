@@ -1,18 +1,20 @@
-import React from 'react'
+import React, {useState} from 'react';
 import Button from 'react-bootstrap/Button';
 import { Dropdown } from 'react-bootstrap';
 import axios from 'axios';
 
 // here we are returning a bootstrap dropdown and just a button
 const Filters = ({ setMainData }) => {
+    const [selectedFilter, setSelectedFilter] = useState('Filter By');
     //function to call the getDataFromDB function and passing the 'year' to it entered by the user
     const handleSelect = (eventKey, event) => {
-        getDataFromDB(event.target.innerText)
+        setSelectedFilter(eventKey);
+        getDataFromDB(event.target.innerText);
     };
     // func to fetch the filtered data by year and update the state
-    const getDataFromDB = async(year) => {
+    const getDataFromDB = async(filter) => {
         try{
-            const response = await axios.get(`https://dashboard-6bfs.onrender.com/api/data/year/${year}`);
+            const response = await axios.get(`https://dashboard-6bfs.onrender.com/api/data/${filter}`);
             setMainData(response.data.data)
         }
         catch(e){
@@ -24,6 +26,7 @@ const Filters = ({ setMainData }) => {
         try{
             const response = await axios.get("https://dashboard-6bfs.onrender.com/api/data/all");
             setMainData(response.data.data)
+            setSelectedFilter('Filter By')
         }
         catch(e){
             console.log(e)
@@ -37,17 +40,19 @@ const Filters = ({ setMainData }) => {
             <Dropdown onSelect={handleSelect}>
 
                 <Dropdown.Toggle variant="success" id="dropdown-basic">
-                    Filter By Year
+                    {selectedFilter}
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
-                    <Dropdown.Item eventKey="1" >2014</Dropdown.Item>
-                    <Dropdown.Item eventKey="2" >2015</Dropdown.Item>
-                    <Dropdown.Item eventKey="3" >2016</Dropdown.Item>
-                    <Dropdown.Item eventKey="4" >2017</Dropdown.Item>
-                    <Dropdown.Item eventKey="5" >2018</Dropdown.Item>
-                    <Dropdown.Item eventKey="6" >2019</Dropdown.Item>
-                    <Dropdown.Item eventKey="7" >2020</Dropdown.Item>
+                    <Dropdown.Item eventKey="Filter By Year" >Year</Dropdown.Item>
+                    <Dropdown.Item eventKey="Filter By Topics" >Topics</Dropdown.Item>
+                    <Dropdown.Item eventKey="Filter By Sector" >Sector</Dropdown.Item>
+                    <Dropdown.Item eventKey="Filter By Region" >Region</Dropdown.Item>
+                    <Dropdown.Item eventKey="Filter By Pest" >PEST</Dropdown.Item>
+                    <Dropdown.Item eventKey="Filter By Source" >Source</Dropdown.Item>
+                    <Dropdown.Item eventKey="Filter By City" >City</Dropdown.Item>
+                    <Dropdown.Item eventKey="Filter By Country" >Country</Dropdown.Item>
+                    <Dropdown.Item eventKey="Filter By Swot" >SWOT</Dropdown.Item>
                 </Dropdown.Menu>
             </Dropdown>
 
