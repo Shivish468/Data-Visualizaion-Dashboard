@@ -56,7 +56,7 @@ const Tabsrow = ({ data, setMainData }) => {
                     )}
                     <Button variant="primary" onClick={() => setLimit(prev => prev + 5)}>Show More</Button>
                 </Tab>
-                <Tab eventKey="chart" title="Interactive Insights/Dashboard">
+                <Tab eventKey="chart" title="Insights/Chart">
                     <form className="form-inline" onSubmit={handleSearchResult} style={{ display: 'flex', justifyContent: 'space-evenly' }}>
                         <input className="form-control mr-sm-2" type="search" placeholder="Search by Sector Name, Topic, Title, Pestle, Source, Insight, URL..." aria-label="Search" onChange={(e) => setSearch(e.target.value)} style={{ marginRight: '1rem' }} />
                         <button className="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
